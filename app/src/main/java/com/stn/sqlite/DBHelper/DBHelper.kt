@@ -35,7 +35,10 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     // Select
     val personList: List<Person>
         get() {
-
+            val rowPerson = ArrayList<Person>()
+            val selectQueryHandler = "SELECT * FROM $TABLE_NAME"
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(selectQueryHandler, null)
         }
 
     // CRUD
