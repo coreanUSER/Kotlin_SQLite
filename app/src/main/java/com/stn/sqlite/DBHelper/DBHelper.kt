@@ -1,5 +1,6 @@
 package com.stn.sqlite.DBHelper
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -32,6 +33,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         onCreate(db!!)
     }
 
+    // CRUD
     // Select
     val personList: List<Person>
         get() {
@@ -39,7 +41,53 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
             val selectQueryHandler = "SELECT * FROM $TABLE_NAME"
             val db = this.writableDatabase
             val cursor = db.rawQuery(selectQueryHandler, null)
+            if(cursor.moveToFirst()){
+                do {
+                    val person = Person()
+                    person.id = cursor.getString(cursor.getColumnIndex(COOL_ID))
+                    person.name = cursor.getString(cursor.getColumnIndex(COOL_NAME))
+                    person.age = cursor.getInt(cursor.getColumnIndex(COOL_AGE))
+                    person.gender = cursor.getString(cursor.getColumnIndex(COOL_GENDER))
+                    person.memo = cursor.getString(cursor.getColumnIndex(COOL_MEMO))
+                    rowPerson.add(person)
+                } while (cursor.moveToNext())
+            }
+            db.close()
+            return rowPerson
         }
 
-    // CRUD
+    // Insert
+    fun addPerson(person: Person) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COOL_ID, person.id)
+        values.put(COOL_NAME, person.name)
+        values.put(COOL_AGE, person.age)
+        values.put(COOL_GENDER, person.gender)
+        values.put(COOL_MEMO, person.memo)
+
+        db.insert(TABLE_NAME, null, values)
+        db.close()
+    }
+
+    // Update
+    fun updatePerson(person: Person): Int {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COOL_ID, person.id)
+        values.put(COOL_NAME, person.name)
+        values.put(COOL_AGE, person.age)
+        values.put(COOL_GENDER, person.gender)
+        values.put(COOL_MEMO, person.memo)
+
+        return db.update(TABLE_NAME, values, "$COOL_ID=?", arrayOf(person.id))
+    }
+
+    // Delete
+    fun deletePerson(person: Person) {
+        val db = this.writableDatabase
+
+        db.delete(TABLE_NAME, "$COOL_ID", arrayOf(person.id))
+        db.close()
+    }
 }

@@ -7,7 +7,7 @@
     tools:context=".AddingActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -36,10 +36,10 @@
         android:layout_marginTop="30dp"
         android:text="나이"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edt_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:layout_marginTop="30dp"
         android:text="성별"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_age" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -71,13 +71,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <RadioButton
-            android:id="@+id/radioButton1"
+            android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="male" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/edt_memo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"

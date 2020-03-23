@@ -1,7 +1,31 @@
 package com.stn.sqlite.Model
 
-import android.content.Context
+import java.util.UUID
 
-class Person(val id: String, val name: String, val age: Int, val gender: String, val memo: String)
-// If You Only Use Kotlin, You Can Omit Constructor
+class Person {
+    var id: String? = null
+    var name: String? = null
+    var age: Int = 0
+    var gender: String? = null
+    var memo: String? = null
+
+    constructor(){}
+
+    constructor(name:String, age:Int, gender:String, meme:String){
+        this.id = UUID.randomUUID().toString()
+        this.name = name
+        this.age = age
+        this.gender = gender
+        this.memo = memo
+    }
+
+    constructor(id:String, name:String, age:Int, gender:String, meme:String){
+        this.id = id
+        this.name = name
+        this.age = age
+        this.gender = gender
+        this.memo = memo
+    }
+}
+
 
